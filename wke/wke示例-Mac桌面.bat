@@ -1,0 +1,1 @@
+qexec-s.exe --transparent=yes --frame=no --loading=yes --html=Ê¾Àý-Mac×ÀÃæ\index.html --engine=wke
