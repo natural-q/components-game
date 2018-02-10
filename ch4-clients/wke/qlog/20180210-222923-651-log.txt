@@ -1,0 +1,5 @@
+2018-02-10 22:29:24.548 [D] [QWindow@028D9D80] onViewCreated
+2018-02-10 22:29:24.548 [D] [QWindow@028D9D80] onContextCreated
+2018-02-10 22:29:25.522 [D] [QWindow@028D9D80] onUrlChanged
+2018-02-10 22:29:25.522 [D] [QWindow@028D9D80] onDocumentCompleted
+2018-02-10 22:29:41.198 [D] [QWindow@028D9D80] onViewClosed
