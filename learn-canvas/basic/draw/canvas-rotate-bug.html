@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>旋转花纹</title>
+  <style>
+    .canvas-demo {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+
+</body>
+<canvas id="myCanvas1" class="canvas-demo" height="300px" width="300px">
+  Don't support Canvas!!
+</canvas>
+<canvas id="myCanvas2" class="canvas-demo" height="300px" width="300px">
+  Don't support Canvas!!
+</canvas>
+<canvas id="myCanvas3" class="canvas-demo" height="300px" width="300px">
+  Don't support Canvas!!
+</canvas>
+<canvas id="myCanvas4" class="canvas-demo" height="300px" width="300px">
+  Don't support Canvas!!
+</canvas>
+<canvas id="myCanvas5" class="canvas-demo" height="300px" width="300px">
+  Don't support Canvas!!
+</canvas>
+<canvas id="myCanvas6" class="canvas-demo" height="300px" width="300px">
+  Don't support Canvas!!
+</canvas>
+<script>
+  /*
+   * 声名变量
+   * canvas,获取画布id
+   * ctx,canvas的上下文环境
+   * CANVAS_WIDTH CANVAS_HEIGHT
+   */
+
+  // 画布长宽常量
+  // 长方形长宽常量
+  var CANVAS_WIDTH = 300;
+  var CANVAS_HEIGHT = 300;
+  var RECT_WIDTH = CANVAS_WIDTH / 4;
+  var RECT_HEIGHT = CANVAS_HEIGHT / 4;
+
+  // 获取各自canvas的上下文环境
+  var ctx1 = document.getElementById("myCanvas1").getContext("2d");
+  var ctx2 = document.getElementById("myCanvas2").getContext("2d");
+  var ctx3 = document.getElementById("myCanvas3").getContext("2d");
+  var ctx4 = document.getElementById("myCanvas4").getContext("2d");
+  var ctx5 = document.getElementById("myCanvas5").getContext("2d");
+  var ctx6 = document.getElementById("myCanvas6").getContext("2d");
+
+  // 调用各个函数进行绘制
+  operate(ctx1, "normal");
+  operate(ctx2, "interesting");
+  operate(ctx3, "extra1");
+  operate(ctx4, "extra2");
+  operate(ctx5, "extra3");
+  operate(ctx6, "extra4");
+
+  /*
+   * 各种诡异的旋转函数
+   */
+  // 操作函数
+  function operate(ctx, func) {
+    ctx.translate(RECT_WIDTH * 2, RECT_HEIGHT * 2);
+    switch (func) {
+      case "normal":
+        normal(ctx);
+        break;
+      case "interesting":
+        interesting(ctx);
+        break;
+      case "extra1":
+        extra1(ctx);
+        break;
+      case "extra2":
+        extra2(ctx);
+        break;
+      case "extra3":
+        extra3(ctx);
+        break;
+      case "extra4":
+        extra4(ctx);
+        break;
+    }
+  }
+
+  // 正常旋转
+  function normal(ctx) {
+    setInterval(function() {
+      ctx.clearRect(-CANVAS_WIDTH / Math.sqrt(2), -CANVAS_HEIGHT / Math.sqrt(2),
+        CANVAS_WIDTH / Math.sqrt(2) * 2,
+        CANVAS_HEIGHT / Math.sqrt(2) * 2);
+      // ctx.beginPath();
+      ctx.rotate(0.025 * Math.PI);
+      ctx.fillRect(0, 0, RECT_WIDTH, RECT_HEIGHT);
+      ctx.closePath();
+    }, 120);
+  }
+
+  //  something interesting
+  //  但是很赏心悦目!!
+  function interesting(ctx) {
+    setInterval(function() {
+      ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      ctx.rotate(Math.PI / 180);
+      ctx.fillRect(0, 0, RECT_WIDTH, RECT_HEIGHT);
+      // ctx.strokeRect(0, 0, 100, 100);
+      ctx.stroke();
+      // strokeRect = rect的路径 + stroke();
+      // fillRect = fill的区域 + fill();
+    }, 30);
+    // 调整周期还可以改浓淡
+  }
+
+
+  function extra1(ctx) {
+    setInterval(function() {
+      ctx.rotate(Math.PI / 180);
+      ctx.fillRect(0, 0, RECT_WIDTH, RECT_HEIGHT);
+      ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    }, 30);
+  }
+
+  function extra2(ctx) {
+    setInterval(function() {
+      ctx.rotate(Math.PI / 180);
+      ctx.fillRect(0, 0, RECT_WIDTH, RECT_HEIGHT);
+    }, 30);
+  }
+
+  function extra3(ctx) {
+    setInterval(function() {
+      ctx.rotate(Math.PI / 180);
+      ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      ctx.fillRect(0, 0, RECT_WIDTH, RECT_HEIGHT);
+    }, 30);
+  }
+
+  function extra4(ctx) {
+    setInterval(function() {
+      ctx.rotate(Math.PI / 180);
+      ctx.fillRect(0, 0, RECT_WIDTH, RECT_HEIGHT);
+      ctx.clearRect(0, 0, RECT_WIDTH, RECT_HEIGHT);
+    }, 30);
+  }
+</script>
+
+</html>

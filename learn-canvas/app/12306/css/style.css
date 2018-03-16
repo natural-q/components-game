@@ -1,0 +1,13 @@
+ul{
+	font-size:30px;
+	list-style: none;
+	position: absolute;
+	left:820px;
+	top:0px;
+}
+#score{
+	color:red;
+}
+#canvas{
+    border:1px solid #000;
+}

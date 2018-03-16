@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Canvas Test</title>
+  <style>
+    canvas {
+      border: 1px dashed black;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="drawingCanvas" width="500" height="300"></canvas>
+</body>
+<script src="canvas-chain-support.js"></script>
+<!-- <script src="js/libs/jquery.min.js"></script> -->
+<script>
+  window.onload = function() {
+    // var ctx = document.getElementById("drawingCanvas").getContext("2d");
+    var ctx = XtendCanvas(document.getElementById("drawingCanvas"));
+
+    /*
+     * 画直线==============
+     */
+    ctx.moveTo(30, 0)
+      .lineTo(130, 100)
+      .lineTo(100, 200)
+      .lineWidth(20)
+      .lineCap("butt")
+      .strokeStyle('black')
+      .stroke()
+      // 转折
+      .beginPath()
+      .moveTo(100, 200)
+      .lineTo(300, 89)
+      .lineWidth(30)
+      .lineCap("round")
+      .strokeStyle('#f00')
+      .stroke();
+
+
+
+
+    /*
+     * 画三角形===========
+     */
+    ctx.beginPath()
+      .moveTo(300, 50)
+      .lineTo(400, 50)
+      .lineTo(350, 100)
+      .closePath()
+      // 先填充再描边
+      .lineWidth(8)
+      .lineJoin("bevel") // 或round
+      .fillStyle("blue")
+      .fill()
+      .strokeStyle("black")
+      .stroke();
+
+
+    /*
+     * 画正方形==========
+     */
+    ctx.beginPath()
+      .fillRect(20, 220, 100, 50)
+      .strokeRect(20, 220, 100, 50);
+
+
+    /*
+     * 画圆弧============
+     */
+    var centerX = 250,
+      centerY = 250;
+    var radius = 20;
+    var startAngle = 1.25 * Math.PI;
+    var endAngle = 1.75 * Math.PI;
+
+    ctx.beginPath()
+      .lineWidth(2)
+      .arc(centerX, centerY, radius, startAngle, endAngle)
+      .stroke()
+      .closePath();
+
+    /*
+     * 画贝塞尔曲线============
+     * 其他：artTo() bezierCurveTo() quadraticCurveTo()
+     */
+    var ctl_x1 = 187,
+      ctl_y1 = 32,
+      ctl_x2 = 429,
+      ctl_y2 = 480;
+    var endPoint_x = 365,
+      endPoint_y = 133;
+    ctx.beginPath()
+      .moveTo(62, 242) // 不要遗漏这一步
+      .bezierCurveTo(ctl_x1, ctl_y1,
+        ctl_x2, ctl_y2,
+        endPoint_x, endPoint_y)
+      .strokeStyle("rgba(100,150,185,0.5)")
+      .stroke();
+
+    /*
+     * 变换 多次旋转正方形=======
+     */
+    ctx.save() // 暂时存储坐标系，放到历史记录里去
+      .globalAlpha(0.1)
+      .translate(100, 100) // 移动坐标系
+      .beginPath();
+    var copies = 10;
+    for (var i = 1; i < copies; i++) {
+      ctx.rotate(2 * Math.PI * 1 / (copies))
+        .rect(0, 0, 60, 60);
+    }
+    ctx.strokeStyle("red")
+      .stroke();
+
+    ctx.restore(); // 恢复历史记录，包括各种参数
+    ctx.beginPath()
+      .fillRect(320, 220, 100, 50)
+      .strokeRect(20, 220, 100, 50);
+
+    /*
+     * 合成操作===========
+     * 大概11种交并补的方式
+     */
+    ctx.beginPath()
+      .fillStyle("yellow")
+      .fillRect(415, 15, 70, 70)
+      .globalCompositeOperation("source-atop")
+      .fillStyle("purple")
+      .beginPath()
+      .arc(475, 75, 35, 0, Math.PI * 2, true)
+      .fill();
+
+
+
+
+
+
+
+
+  };
+</script>
+
+</html>

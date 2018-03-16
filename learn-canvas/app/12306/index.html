@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>期末设计 12306验证码</title>
+    <style >
+         .floatingControls {
+            position: absolute;
+            left: 860px;
+            top:  490px;
+         }
+         #canvas {
+            background: #FAF0E6;
+            border:2px solid;
+            border-radius:25px;
+            box-shadow: 3px 3px 3px 3px #333;
+         }
+         #video {
+            display: none;
+         }
+         .ghost{
+             width:160px;
+             margin:100px;
+             left:1000px;
+             top:60px;
+             position:absolute;
+             overflow:hidden;
+             animation:ghostUpdown 1s infinite alternate;
+             -webkit-animation:ghostUpdown 1s infinite alternate;
+         }
+         .ghostBody{
+             width:140px;
+             height:180px;
+             background:#B0E0E6;
+             border-radius:100% 100% 0 0;
+             position:relative;
+         }
+         .ghostEye{
+             width:15px;
+             height:20px;
+             border-radius:100%;
+             border:2px solid #061E74;
+             background:#061E74;
+             box-shadow:inset -2px -2px #fff;
+             position:absolute;
+             top:60px;
+         }
+         .left{ left:45px }
+         .right{ right:50px;}
+         .ghostMouth{
+             width:15px;
+             height:18px;
+             border-radius:100%;
+             border:2px solid #061E74;
+             position:absolute;
+             top:90px;
+             left:70px;
+             background:#FFFFFF;
+         }
+         .ghostWave{
+             position:absolute;
+             width: 140px;
+             height: 20px;
+             background-size:25px 20px;
+             background-image:radial-gradient(circle at 50% 0%,#B0E0E6,71%,transparent 71%);
+         }
+         .shadow{
+             width:140px;
+             height:10px;
+             border-radius:100%;
+             background:#061E74;
+             opacity:0.3;
+             margin-top:70px;
+             animation:shadow 1s infinite alternate;
+             -webkit-animation:shadow 1s infinite alternate;
+         }
+         @keyframes ghostUpdown{
+             from{margin-top:100px;}
+             to{margin-top:70px;}
+         }
+         @-webkit-keyframes ghostUpdown{
+             from{margin-top:100px;}
+             to{margin-top:70px;}
+         }
+         @keyframes shadow{
+             from{margin-top:70px;opacity:0.3;}
+             to{margin-top:100px;opacity:0.1;}
+         }
+         @-webkit-keyframes shadow{
+             from{margin-top:70px;opacity:0.3;}
+             to{margin-top:100px;opacity:0.1;}
+         }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <ul>
+       <li>[1]明星科普：</li>
+       <input id='know1'   type="button"   value="白百何"/>
+       <input id='know2'   type="button"   value="王珞丹"/>
+       <input id='know3'   type="button"   value="王祖蓝"/>
+       <input id='know4'   type='button'   value='金星 '/>
+       <br>
+       <br>
+       <li>[2]确认提交：</li>
+       <input id='submit' type="button" value=" 提交验证码" style="width:180px; height:30px;"/> 
+       <br>
+       <br>
+       <li>
+          <output id='scaleOutput'>[3]开脑洞1:</output>
+       </li>
+       <li>
+          <input id='scaleSlider' type='range'
+               min='1' max='3' step='1' value='1'/> 
+       </li>
+       <br>
+       <li>[4]星光相册：</li>
+       <input id='pic'   type='button'   value='相册' style="width:180px; height:30px"/>
+       <br>
+       <br>
+       <li>[5]说明视频:</li>
+    </ul>
+
+    <canvas id='canvas' width='800' height='500'>
+        Canvas not supported
+    </canvas>
+    
+
+
+    <video id='video' width='700' controls src='12306.mp4'></video>
+    
+    <div id='controls' class='floatingControls'>
+        <input id='controlButton' type='button' value='播放' style="width:180px; height:30px"/>
+    </div>
+    
+
+
+    <div class="ghost">
+        <div class="ghostBody"></div>
+        <div class="ghostEye left"></div>
+        <div class="ghostEye right"></div>
+        <div class="ghostMouth"></div>
+        <div class="ghostWave"></div>
+        <div class="shadow"></div>
+    </div>
+    
+    <script src='js/stopwatch.js'></script>
+    <script src='js/animationTimer.js'></script>
+    <script src='js/requestNextAnimationFrame.js'></script>
+    <script src='js/sprites.js'></script>
+    <script src='js/draw.js'></script>
+    <script src='js/12306.js'></script>
+    
+</body>
